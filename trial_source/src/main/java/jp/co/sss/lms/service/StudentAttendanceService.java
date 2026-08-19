@@ -1,6 +1,7 @@
 package jp.co.sss.lms.service;
 
 import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -15,6 +16,7 @@ import jp.co.sss.lms.entity.TStudentAttendance;
 import jp.co.sss.lms.enums.AttendanceStatusEnum;
 import jp.co.sss.lms.form.AttendanceForm;
 import jp.co.sss.lms.form.DailyAttendanceForm;
+import jp.co.sss.lms.mapper.MLmsUserMapper;
 import jp.co.sss.lms.mapper.TStudentAttendanceMapper;
 import jp.co.sss.lms.util.AttendanceUtil;
 import jp.co.sss.lms.util.Constants;
@@ -31,6 +33,7 @@ import jp.co.sss.lms.util.TrainingTime;
 @Service
 public class StudentAttendanceService {
 
+	// 既存実装
 	@Autowired
 	private DateUtil dateUtil;
 	@Autowired
@@ -43,6 +46,24 @@ public class StudentAttendanceService {
 	private LoginUserDto loginUserDto;
 	@Autowired
 	private TStudentAttendanceMapper tStudentAttendanceMapper;
+
+	// 新規実装
+	@Autowired
+	private TrainingTime trainingTime;
+	@Autowired
+	private MLmsUserMapper mLmsUserMapper;
+	// @Autowired
+	// private MPlaceMapper mPlaceMapper;
+	// @Autowired
+	// private TCompanyAttendanceMapper tCompanyAttendanceMapper;
+	// @Autowired
+	// private TUserPlaceMapper tUserPlaceMapper;
+	// @Autowired
+	// private PlaceService placeService;
+	@Autowired
+	private CourseService courseService;
+	// @Autowired
+	// private CompanyService companyService;
 
 	/**
 	 * 勤怠一覧情報取得
@@ -332,6 +353,25 @@ public class StudentAttendanceService {
 		}
 		// 完了メッセージ
 		return messageUtil.getMessage(Constants.PROP_KEY_ATTENDANCE_UPDATE_NOTICE);
+	}
+
+	public boolean hasPastUnenteredAttendance(Integer lmsUserId, Short deleteFlg) {
+		// 現在より過去に未入力が無いかチェック
+		// SimpleDateFormatクラスでフォーマットパターンを設定する
+		SimpleDateFormat sdt = new SimpleDateFormat("yyyy-MM-dd");
+
+		// 現在日付を取得
+		Date today = new Date();
+
+		// 過去日の未入力数をカウント
+		Integer notEnterCount = tStudentAttendanceMapper.notEnterCount(lmsUserId, deleteFlg, today);
+
+		// 取得した未入力カウント数が0より大きい場合、trueを返し、過去日未入力確認ダイアログを表示
+		if (notEnterCount > 0) {
+			return true;
+		} else {
+			return false;
+		}
 	}
 
 }
