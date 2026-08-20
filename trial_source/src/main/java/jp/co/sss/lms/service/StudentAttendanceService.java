@@ -355,16 +355,24 @@ public class StudentAttendanceService {
 		return messageUtil.getMessage(Constants.PROP_KEY_ATTENDANCE_UPDATE_NOTICE);
 	}
 
-	public boolean hasPastUnenteredAttendance(Integer lmsUserId, Short deleteFlg) {
+	public boolean notEnterFlg(Integer lmsUserId, Short deleteFlg) {
 		// 現在より過去に未入力が無いかチェック
 		// SimpleDateFormatクラスでフォーマットパターンを設定する
-		SimpleDateFormat sdt = new SimpleDateFormat("yyyy-MM-dd");
+		SimpleDateFormat sdt = new SimpleDateFormat("yyyyMMdd");
 
 		// 現在日付を取得
 		Date today = new Date();
+		
+		Date trainingDate = null;
+		
+		try {
+			trainingDate = sdt.parse(sdt.format(today));
+		}catch(ParseException e){
+			e.printStackTrace();
+		}
 
 		// 過去日の未入力数をカウント
-		Integer notEnterCount = tStudentAttendanceMapper.notEnterCount(lmsUserId, deleteFlg, today);
+		Integer notEnterCount = tStudentAttendanceMapper.notEnterCount(lmsUserId, deleteFlg, trainingDate);
 
 		// 取得した未入力カウント数が0より大きい場合、trueを返し、過去日未入力確認ダイアログを表示
 		if (notEnterCount > 0) {

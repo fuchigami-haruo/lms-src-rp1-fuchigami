@@ -48,7 +48,7 @@ public class AttendanceController {
 		model.addAttribute("attendanceManagementDtoList", attendanceManagementDtoList);
 		
 
-		model.addAttribute("hasPastUnenteredAttendance", studentAttendanceService.hasPastUnenteredAttendance(loginUserDto.getLmsUserId(), (short) 0 ));
+		model.addAttribute("notEnterFlg", studentAttendanceService.notEnterFlg(loginUserDto.getLmsUserId(), (short) 0 ));
 
 		return "attendance/detail";
 	}
