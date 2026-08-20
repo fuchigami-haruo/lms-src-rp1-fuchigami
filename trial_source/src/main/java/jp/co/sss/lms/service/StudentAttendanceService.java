@@ -355,6 +355,13 @@ public class StudentAttendanceService {
 		return messageUtil.getMessage(Constants.PROP_KEY_ATTENDANCE_UPDATE_NOTICE);
 	}
 
+	/**
+	 * 勤怠情報（受講生入力）未入力件数取得
+	 * 
+	 * @param lmsUserId
+	 * @param deleteFlg
+	 * @return 未入力の有無
+	 */
 	public boolean notEnterFlg(Integer lmsUserId, Short deleteFlg) {
 		// 現在より過去に未入力が無いかチェック
 		// SimpleDateFormatクラスでフォーマットパターンを設定する

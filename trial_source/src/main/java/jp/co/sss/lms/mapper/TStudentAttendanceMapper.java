@@ -69,6 +69,7 @@ public interface TStudentAttendanceMapper {
 	/**
 	 * 勤怠情報（受講生入力）未入力件数取得
 	 * 
+	 * @author FuchigamiHaruo
 	 * @param lmsUserId
 	 * @param deleteFlg
 	 * @param trainingDate

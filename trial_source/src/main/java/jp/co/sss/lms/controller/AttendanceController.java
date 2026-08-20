@@ -33,6 +33,7 @@ public class AttendanceController {
 	/**
 	 * 勤怠管理画面 初期表示
 	 * 
+	 * @author FuchigamiHaruo
 	 * @param lmsUserId
 	 * @param courseId
 	 * @param model
