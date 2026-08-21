@@ -239,8 +239,18 @@ public class StudentAttendanceService {
 		attendanceForm.setLmsUserId(loginUserDto.getLmsUserId());
 		attendanceForm.setUserName(loginUserDto.getUserName());
 		attendanceForm.setLeaveFlg(loginUserDto.getLeaveFlg());
+		
+		// 中抜け時間マップを取得
 		attendanceForm.setBlankTimes(attendanceUtil.setBlankTime());
 
+		// 選択肢用の時間マップを取得
+		attendanceForm.setHourMap(attendanceUtil.getHourMap());
+		
+		// 選択肢用の分マップを取得
+		attendanceForm.setMinuteMap(attendanceUtil.getMinuteMap());
+		
+		
+		
 		// 途中退校している場合のみ設定
 		if (loginUserDto.getLeaveDate() != null) {
 			attendanceForm
@@ -259,6 +269,17 @@ public class StudentAttendanceService {
 			dailyAttendanceForm
 					.setTrainingStartTime(attendanceManagementDto.getTrainingStartTime());
 			dailyAttendanceForm.setTrainingEndTime(attendanceManagementDto.getTrainingEndTime());
+			
+//			// 出勤時間（時）
+//			dailyAttendanceForm.setTrainingStartTimeHour(attendanceUtil.getHourMap(attendanceManagementDto.getTrainingStartTime()));
+//			// 出勤時間（分）
+//			dailyAttendanceForm.setTrainingStartTimeMinute();
+//			// 出勤時間（時）
+//			dailyAttendanceForm.setTrainingEndTimeHour();
+//			// 出勤時間（時）
+//			dailyAttendanceForm.setTrainingEndTimeMinute();
+			
+			
 			if (attendanceManagementDto.getBlankTime() != null) {
 				dailyAttendanceForm.setBlankTime(attendanceManagementDto.getBlankTime());
 				dailyAttendanceForm.setBlankTimeValue(String.valueOf(

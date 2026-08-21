@@ -131,6 +131,38 @@ public class AttendanceUtil {
 		}
 		return map;
 	}
+	
+	/**
+	 * 時間のプルダウンマップを生成 Task.26
+	 * 
+	 * @author FuchigamiHaruo
+	 * @return 出退勤時間
+	 */
+	public LinkedHashMap<Integer, String> getHourMap() {
+		LinkedHashMap<Integer, String> map = new LinkedHashMap<>();
+		map.put(null, "");
+		for (int i = 0; i < 24; i++) {
+			// マップに"00"から"23"までを追加
+			map.put(i, String.format("%02d", i));
+		}
+		return map;
+	}
+	
+	/**
+	 * 分のプルダウンマップを生成 Task.26
+	 * 
+	 * @author FuchigamiHaruo
+	 * @return 出退勤時間
+	 */
+	public LinkedHashMap<Integer, String> getMinuteMap() {
+		LinkedHashMap<Integer, String> map = new LinkedHashMap<>();
+		map.put(null, "");
+		for (int i = 0; i < 60; i++) {
+			// マップに"00"から"59"までを追加
+			map.put(i, String.format("%02d", i));
+		}
+		return map;
+	}
 
 	/**
 	 * 研修日の判定
