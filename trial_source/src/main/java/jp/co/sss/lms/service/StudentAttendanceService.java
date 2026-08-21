@@ -362,7 +362,7 @@ public class StudentAttendanceService {
 	 * @param deleteFlg
 	 * @return 未入力の有無
 	 */
-	public boolean notEnterFlg(Integer lmsUserId, Short deleteFlg) {
+	public boolean notEnterCheck(Integer lmsUserId, Short deleteFlg) {
 		// 現在より過去に未入力が無いかチェック
 		// SimpleDateFormatクラスでフォーマットパターンを設定する
 		SimpleDateFormat sdt = new SimpleDateFormat("yyyyMMdd");

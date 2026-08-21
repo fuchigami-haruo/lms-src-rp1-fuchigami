@@ -49,7 +49,7 @@ public class AttendanceController {
 		model.addAttribute("attendanceManagementDtoList", attendanceManagementDtoList);
 		
 
-		model.addAttribute("notEnterFlg", studentAttendanceService.notEnterFlg(loginUserDto.getLmsUserId(), (short) 0 ));
+		model.addAttribute("notEnterFlg", studentAttendanceService.notEnterCheck(loginUserDto.getLmsUserId(), (short) 0 ));
 
 		return "attendance/detail";
 	}
