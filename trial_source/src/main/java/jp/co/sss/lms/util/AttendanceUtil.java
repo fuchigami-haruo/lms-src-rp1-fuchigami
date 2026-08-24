@@ -1,6 +1,7 @@
 package jp.co.sss.lms.util;
 
 import java.text.ParseException;
+import java.time.LocalTime;
 import java.util.Date;
 import java.util.LinkedHashMap;
 
@@ -163,6 +164,31 @@ public class AttendanceUtil {
 		}
 		return map;
 	}
+	
+	// 時間(時)の切り出し
+	// 編集中
+	public Integer getHour(String time) {
+		// 時間を（時）と（分）に分ける
+		LocalTime localTime = LocalTime.parse(time);
+		
+		// （時）のみ取り出す
+		int hour = localTime.getHour();
+		
+		return hour;
+	}
+	
+	// 時間(分)の切り出し
+	// 編集中
+	public Integer getMinute(String minute) {
+		// 時間を（時）と（分）に分ける
+		LocalTime localTime = LocalTime.parse(minute);
+		
+		// （分）のみ取り出す
+		int hour = localTime.getMinute();
+		
+		return hour;
+	}
+
 
 	/**
 	 * 研修日の判定

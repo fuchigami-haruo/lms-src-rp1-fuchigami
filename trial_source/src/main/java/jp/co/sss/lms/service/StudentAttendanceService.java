@@ -240,6 +240,7 @@ public class StudentAttendanceService {
 		attendanceForm.setUserName(loginUserDto.getUserName());
 		attendanceForm.setLeaveFlg(loginUserDto.getLeaveFlg());
 		
+		// 編集 FuchigamiHaruo Task.26
 		// 中抜け時間マップを取得
 		attendanceForm.setBlankTimes(attendanceUtil.setBlankTime());
 
