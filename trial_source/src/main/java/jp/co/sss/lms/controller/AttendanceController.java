@@ -33,7 +33,6 @@ public class AttendanceController {
 	/**
 	 * 勤怠管理画面 初期表示
 	 * 
-	 * @author FuchigamiHaruo
 	 * @param lmsUserId
 	 * @param courseId
 	 * @param model
@@ -41,15 +40,16 @@ public class AttendanceController {
 	 * @throws ParseException
 	 */
 	@RequestMapping(path = "/detail", method = RequestMethod.GET)
-	public String index(Model model) {
+	public String index(Model model) throws ParseException {
 
 		// 勤怠一覧の取得
 		List<AttendanceManagementDto> attendanceManagementDtoList = studentAttendanceService
 				.getAttendanceManagement(loginUserDto.getCourseId(), loginUserDto.getLmsUserId());
 		model.addAttribute("attendanceManagementDtoList", attendanceManagementDtoList);
 		
-
-		model.addAttribute("notEnterFlg", studentAttendanceService.notEnterCheck(loginUserDto.getLmsUserId(), (short) 0 ));
+		// 編集 FuchigamiHaruo Task.25
+		// 勤怠時間未入力フラグの取得
+		model.addAttribute("notEnterFlg", studentAttendanceService.notEnterCheck());
 
 		return "attendance/detail";
 	}

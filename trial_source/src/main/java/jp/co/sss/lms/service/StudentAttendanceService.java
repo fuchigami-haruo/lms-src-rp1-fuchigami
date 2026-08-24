@@ -271,7 +271,7 @@ public class StudentAttendanceService {
 			dailyAttendanceForm.setTrainingEndTime(attendanceManagementDto.getTrainingEndTime());
 			
 //			// 出勤時間（時）
-//			dailyAttendanceForm.setTrainingStartTimeHour(attendanceUtil.getHourMap(attendanceManagementDto.getTrainingStartTime()));
+//			dailyAttendanceForm.setTrainingStartTimeHour(attendanceUtil.);
 //			// 出勤時間（分）
 //			dailyAttendanceForm.setTrainingStartTimeMinute();
 //			// 出勤時間（時）
@@ -377,13 +377,13 @@ public class StudentAttendanceService {
 	}
 
 	/**
-	 * 勤怠情報（受講生入力）未入力件数取得
+	 * 勤怠情報（受講生入力）未入力件数取得 Task.25
 	 * 
-	 * @param lmsUserId
-	 * @param deleteFlg
-	 * @return 未入力の有無
+	 * @author FuchigamiHaruo
+	 * @return 勤怠時間未入力の有無
+	 * @throws ParseException
 	 */
-	public boolean notEnterCheck(Integer lmsUserId, Short deleteFlg) {
+	public boolean notEnterCheck() throws ParseException {
 		// 現在より過去に未入力が無いかチェック
 		// SimpleDateFormatクラスでフォーマットパターンを設定する
 		SimpleDateFormat sdt = new SimpleDateFormat("yyyyMMdd");
@@ -391,16 +391,14 @@ public class StudentAttendanceService {
 		// 現在日付を取得
 		Date today = new Date();
 		
+		// フォーマットした現在日時を格納する変数を宣言
 		Date trainingDate = null;
 		
-		try {
-			trainingDate = sdt.parse(sdt.format(today));
-		}catch(ParseException e){
-			e.printStackTrace();
-		}
+		// フォーマットした現在日時をDate型に変換し、変数に格納
+		trainingDate = sdt.parse(sdt.format(today));
 
 		// 過去日の未入力数をカウント
-		Integer notEnterCount = tStudentAttendanceMapper.notEnterCount(lmsUserId, deleteFlg, trainingDate);
+		Integer notEnterCount = tStudentAttendanceMapper.notEnterCount(loginUserDto.getLmsUserId(), Constants.CODE_VAL_ATWORK, trainingDate);
 
 		// 取得した未入力カウント数が0より大きい場合、trueを返し、過去日未入力確認ダイアログを表示
 		if (notEnterCount > 0) {
