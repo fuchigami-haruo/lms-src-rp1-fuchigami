@@ -48,13 +48,13 @@ public class DailyAttendanceForm {
 	private String index;
 	
 
-	/** 出勤時間（時）（追加） */
-	private String trainingStartTimeHour;
-	/** 出勤時間（分）（追加） */
-	private String trainingStartTimeMinute;
-	/** 退勤時間（時）（追加） */
-	private String trainingEndTimeHour;
-	/** 退勤時間（分）（追加） */
-	private String trainingEndTimeMinute;
+	/** 出勤時間（時）（追加） Task.26*/
+	private Integer trainingStartTimeHour;
+	/** 出勤時間（分）（追加） Task.26*/
+	private Integer trainingStartTimeMinute;
+	/** 退勤時間（時）（追加） Task.26*/
+	private Integer trainingEndTimeHour;
+	/** 退勤時間（分）（追加） Task.26*/
+	private Integer trainingEndTimeMinute;
 
 }

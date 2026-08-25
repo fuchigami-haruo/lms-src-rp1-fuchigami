@@ -1,7 +1,6 @@
 package jp.co.sss.lms.util;
 
 import java.text.ParseException;
-import java.time.LocalTime;
 import java.util.Date;
 import java.util.LinkedHashMap;
 
@@ -132,7 +131,7 @@ public class AttendanceUtil {
 		}
 		return map;
 	}
-	
+
 	/**
 	 * 時間のプルダウンマップを生成 Task.26
 	 * 
@@ -148,7 +147,7 @@ public class AttendanceUtil {
 		}
 		return map;
 	}
-	
+
 	/**
 	 * 分のプルダウンマップを生成 Task.26
 	 * 
@@ -164,31 +163,44 @@ public class AttendanceUtil {
 		}
 		return map;
 	}
-	
-	// 時間(時)の切り出し
-	// 編集中
+
+	/**
+	 * 時間(時)の切り出し Task.26
+	 * 
+	 * @author FuchigamiHaruo
+	 * @param time
+	 * @return 時間(時)
+	 */
 	public Integer getHour(String time) {
-		// 時間を（時）と（分）に分ける
-		LocalTime localTime = LocalTime.parse(time);
 		
-		// （時）のみ取り出す
-		int hour = localTime.getHour();
+	    if (time == null || time.isEmpty()) {
+	        return null;
+	    }
 		
-		return hour;
-	}
-	
-	// 時間(分)の切り出し
-	// 編集中
-	public Integer getMinute(String minute) {
-		// 時間を（時）と（分）に分ける
-		LocalTime localTime = LocalTime.parse(minute);
-		
-		// （分）のみ取り出す
-		int hour = localTime.getMinute();
-		
+		// 時間(時)を切り出す
+		Integer hour = Integer.parseInt(time.substring(0, 2));
+
 		return hour;
 	}
 
+	/**
+	 * 時間(分)の切り出し Task.26
+	 * 
+	 * @author FuchigamiHaruo
+	 * @param time
+	 * @return 時間(分)
+	 */
+	public Integer getMinute(String time) {
+		
+	    if (time == null || time.isEmpty()) {
+	        return null;
+	    }
+	    
+		// 時間(分)を切り出す
+		Integer minute = Integer.parseInt(time.substring(3, 5));
+
+		return minute;
+	}
 
 	/**
 	 * 研修日の判定
