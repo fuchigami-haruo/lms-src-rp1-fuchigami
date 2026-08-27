@@ -113,24 +113,33 @@
 	
 	<!--編集 FuchigamiHaruo Task.28-->
 	<script type="text/javascript" th:inline="javascript">
+		
+		// btn-successクラスを持つすべての要素を取得
 		const buttons = document.querySelectorAll('.btn-success');
 		
-		// ver ttt = document.get
-		
+		// 取得した要素を取り出して繰り返し処理
 		buttons.forEach(function(button){
 			
+			// クリックしたときに関数を呼び出す
 			button.addEventListener('click', function(){
+				
+				// 以下、呼び出される処理内容
+				// 親要素のtrタグを取得
 				const row = button.closest('tr');
 				
+				// trタグ内のtraining-start-time-hourクラスを持つ要素のvalueを9に設定する
 				const trainingStartTimeHour = row.querySelector('.training-start-time-hour');
 				trainingStartTimeHour.value = '9';
 				
+				// trタグ内のtraining-start-time-minuteクラスを持つ要素のvalueを0に設定する
 				const trainingStartTimeMinute = row.querySelector('.training-start-time-minute');
 				trainingStartTimeMinute.value = '0';
-
+				
+				// trタグ内のtraining-end-time-hourクラスを持つ要素のvalueを18に設定する
 				const trainingEndTimeHour = row.querySelector('.training-end-time-hour');
 				trainingEndTimeHour.value = '18';
-
+				
+				// trタグ内のtraining-end-time-minuteクラスを持つ要素のvalueを0に設定する
 				const trainingEndTimeMinute = row.querySelector('.training-end-time-minute');
 				trainingEndTimeMinute.value = '0';
 			});
