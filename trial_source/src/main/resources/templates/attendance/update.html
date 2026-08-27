@@ -49,7 +49,7 @@
 								<td class="w140">[[${dailyAttendanceForm.dispTrainingDate}]]</td>
 								<td class="w140">[[${dailyAttendanceForm.sectionName}]]</td>
 								
-								<td class="w60"><input type="button" class="btn btn-success" value="定時"/></td>
+								<td class="w60"><input type="button" class="btn btn-success default-button" value="定時"/></td>
 								<td class="w70">
 <!--									<input type="text" th:name="|attendanceList[${stat.index}].trainingStartTime|"-->
 <!--									th:value="${dailyAttendanceForm.trainingStartTime}" class="form-control" />-->
@@ -115,7 +115,7 @@
 	<script type="text/javascript" th:inline="javascript">
 		
 		// btn-successクラスを持つすべての要素を取得
-		const buttons = document.querySelectorAll('.btn-success');
+		const buttons = document.querySelectorAll('.default-button');
 		
 		// 取得した要素を取り出して繰り返し処理
 		buttons.forEach(function(button){
