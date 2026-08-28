@@ -134,12 +134,19 @@ public class AttendanceController {
 	 * @throws ParseException
 	 */
 	@RequestMapping(path = "/update", params = "complete", method = RequestMethod.POST)
-	public String complete(AttendanceForm attendanceForm, Model model, BindingResult result)
+	public String complete(AttendanceForm attendanceForm, BindingResult result, Model model)
 			throws ParseException {
 		
 		// 編集 FuchigamiHaruo Task.26
-		// 出勤／退勤時間をhh:mm形式に設定
+		// ①．出勤／退勤時間をhh:mm形式に設定
 		studentAttendanceService.formatConversion(attendanceForm);
+		
+		// 編集 FuchigamiHaruo Task.27
+		// ②．入力チェック
+		// Ⅰ．FORMクラスの入力チェックでエラーの場合、勤怠情報直接変更画面へ遷移
+		// studentAttendanceService.updateInputCheck(attendanceForm, result);
+		
+		// Ⅱ．入力パラメータ．勤怠リスト[n]の件数分、下記チェックを行う
 
 		// 更新
 		String message = studentAttendanceService.update(attendanceForm);
